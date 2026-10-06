@@ -15,6 +15,6 @@ export function ProductCard({ product }: { product: Product }) {
       <button className="quick-add" onClick={() => { setAdded(true); window.setTimeout(() => setAdded(false), 1400); }}><BagIcon size={17} />{added ? "Added" : "Add to cart"}</button>
     </div>
     <div className="price-badge">{product.price}</div>
-    <div className="product-info"><h3>{product.name}</h3><p># {product.variant}</p></div>
+    <div className="product-info"><span className="collection-label">{product.collection}</span><h3>{product.name}</h3><p>{product.variant}</p></div>
   </article>;
 }

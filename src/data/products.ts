@@ -1,33 +1,37 @@
+export type Collection = "work" | "kids";
+export type ProductCategory = "lighting" | "organization" | "accessories";
+
 export type Product = {
-  id: string; name: string; variant?: string; price: string;
-  image: string; crop: string; hoverImage?: string;
+  id: string;
+  name: string;
+  collection: Collection;
+  category: ProductCategory;
+  variant?: string;
+  price: string;
+  image: string;
+  crop: string;
 };
 
 export const bestSellers: Product[] = [
-  { id: "core-desk-mat", name: "Core Desk Mat", variant: "Graphite", price: "₺899", image: "/images/best-sellers.png", crop: "crop-tl", hoverImage: "/images/setup.png" },
-  { id: "rise-laptop-stand", name: "Rise Laptop Stand", variant: "Matte Black", price: "₺1,099", image: "/images/best-sellers.png", crop: "crop-tr", hoverImage: "/images/setup.png" },
-  { id: "arc-headphone-stand", name: "Arc Headphone Stand", variant: "Matte Black", price: "₺649", image: "/images/best-sellers.png", crop: "crop-bl", hoverImage: "/images/setup.png" },
-  { id: "dock-desk-tray", name: "Dock Desk Tray", variant: "Oak / Black", price: "₺549", image: "/images/best-sellers.png", crop: "crop-br", hoverImage: "/images/setup.png" },
+  { id: "core-desk-mat", name: "Core Desk Mat", collection: "work", category: "accessories", variant: "Graphite", price: "₺899", image: "/images/work-products.png", crop: "crop-tr" },
+  { id: "rise-laptop-stand", name: "Rise Laptop Stand", collection: "work", category: "accessories", variant: "Matte Black", price: "₺1,099", image: "/images/work-products.png", crop: "crop-bl" },
+  { id: "pipe-desk-lamp", name: "Pipe Desk Lamp", collection: "work", category: "lighting", variant: "Matte Black", price: "₺1,299", image: "/images/work-products.png", crop: "crop-tl" },
+  { id: "arc-headphone-stand", name: "Arc Headphone Stand", collection: "work", category: "accessories", variant: "Black / Oak", price: "₺649", image: "/images/work-products.png", crop: "crop-br" },
+  { id: "brick-desk-lamp", name: "Brick Desk Lamp", collection: "kids", category: "lighting", variant: "Coral / Cream", price: "₺899", image: "/images/kids-products.png", crop: "crop-tl" },
+  { id: "pixel-night-light", name: "Pixel Night Light", collection: "kids", category: "lighting", variant: "Multi", price: "₺749", image: "/images/kids-products.png", crop: "crop-tr" },
+  { id: "name-light", name: "Name Light", collection: "kids", category: "lighting", variant: "Personalized", price: "From ₺999", image: "/images/kids-products.png", crop: "crop-bl" },
+  { id: "color-desk-organizer", name: "Color Desk Organizer", collection: "kids", category: "organization", variant: "Color Mix", price: "₺449", image: "/images/kids-products.png", crop: "crop-br" },
 ];
 
 export const newArrivals: Product[] = [
-  { id: "level-monitor-riser", name: "Level Monitor Riser", variant: "Natural Oak", price: "₺1,299", image: "/images/new-arrivals.png", crop: "crop-tl" },
-  { id: "underdesk-hook", name: "Underdesk Headphone Hook", variant: "Matte Black", price: "₺299", image: "/images/new-arrivals.png", crop: "crop-tr" },
-  { id: "underdesk-cable-tray", name: "Underdesk Cable Tray", variant: "Matte Black", price: "₺599", image: "/images/new-arrivals.png", crop: "crop-bl" },
-  { id: "cable-kit", name: "Cable Kit", variant: "Black", price: "₺249", image: "/images/new-arrivals.png", crop: "crop-br" },
+  { id: "level-monitor-riser", name: "Level Monitor Riser", collection: "work", category: "organization", variant: "Natural Oak", price: "₺1,299", image: "/images/new-arrivals.png", crop: "crop-tl" },
+  { id: "underdesk-hook", name: "Underdesk Headphone Hook", collection: "work", category: "organization", variant: "Matte Black", price: "₺299", image: "/images/new-arrivals.png", crop: "crop-tr" },
+  { id: "animal-light", name: "Animal Light", collection: "kids", category: "lighting", variant: "Warm White", price: "₺699", image: "/images/kids-products.png", crop: "crop-bl" },
+  { id: "custom-brick-lamp", name: "Custom Color Brick Lamp", collection: "kids", category: "lighting", variant: "Pick Your Colors", price: "From ₺999", image: "/images/kids-products.png", crop: "crop-tl" },
+  { id: "underdesk-cable-tray", name: "Underdesk Cable Tray", collection: "work", category: "organization", variant: "Matte Black", price: "₺599", image: "/images/new-arrivals.png", crop: "crop-bl" },
+  { id: "mini-storage", name: "Mini Storage Set", collection: "kids", category: "organization", variant: "Color Mix", price: "₺549", image: "/images/kids-products.png", crop: "crop-br" },
 ];
 
 export const allProducts: Product[] = [...bestSellers, ...newArrivals];
-
-export const categories = [
-  { name: "Desk", copy: "Everything your workspace starts with.", crop: "crop-tl" },
-  { name: "Organization", copy: "Less clutter. More focus.", crop: "crop-tr" },
-  { name: "Comfort", copy: "Made for longer sessions.", crop: "crop-bl" },
-  { name: "Space", copy: "Beyond the desk.", crop: "crop-br" },
-];
-
-export const bundles = [
-  { name: "Starter Setup", items: "Desk Mat + Cable Kit", crop: "crop-tl" },
-  { name: "Clean Desk", items: "Desk Mat + Laptop Stand + Cable Kit", crop: "crop-tr" },
-  { name: "Full Setup", items: "Desk Mat + Laptop Stand + Headphone Stand + Desk Tray + Cable Kit", crop: "crop-bl" },
-];
+export const workProducts = allProducts.filter((product) => product.collection === "work");
+export const kidsProducts = allProducts.filter((product) => product.collection === "kids");
