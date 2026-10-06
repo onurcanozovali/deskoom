@@ -1,0 +1,9 @@
+type IconProps = { size?: number; className?: string };
+const base = { fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+export const SearchIcon = ({ size = 20, className }: IconProps) => <svg aria-hidden="true" className={className} width={size} height={size} viewBox="0 0 24 24" {...base}><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>;
+export const UserIcon = ({ size = 20, className }: IconProps) => <svg aria-hidden="true" className={className} width={size} height={size} viewBox="0 0 24 24" {...base}><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-4 3-6 7-6s6.3 2 7 6"/></svg>;
+export const HeartIcon = ({ size = 20, className }: IconProps) => <svg aria-hidden="true" className={className} width={size} height={size} viewBox="0 0 24 24" {...base}><path d="M20.8 5.8c-2-2.2-5.3-1.7-7 .5L12 8.5l-1.7-2.2c-1.7-2.2-5-2.7-7-.5-2 2.3-1.6 5.7.5 7.8L12 21l8.2-7.4c2.2-2.1 2.6-5.5.6-7.8Z"/></svg>;
+export const BagIcon = ({ size = 20, className }: IconProps) => <svg aria-hidden="true" className={className} width={size} height={size} viewBox="0 0 24 24" {...base}><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>;
+export const MenuIcon = ({ size = 22, className }: IconProps) => <svg aria-hidden="true" className={className} width={size} height={size} viewBox="0 0 24 24" {...base}><path d="M3 7h18M3 12h18M3 17h18"/></svg>;
+export const CloseIcon = ({ size = 22, className }: IconProps) => <svg aria-hidden="true" className={className} width={size} height={size} viewBox="0 0 24 24" {...base}><path d="m5 5 14 14M19 5 5 19"/></svg>;
+export const ArrowIcon = ({ size = 18, className }: IconProps) => <svg aria-hidden="true" className={className} width={size} height={size} viewBox="0 0 24 24" {...base}><path d="M5 12h14m-5-5 5 5-5 5"/></svg>;
