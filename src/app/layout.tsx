@@ -10,15 +10,15 @@ const geistSans = Geist({
 const editorial = Instrument_Serif({ variable: "--font-editorial", subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
-  title: "DESKOOM — Build a better space.",
-  description: "Thoughtful desk accessories, ergonomic essentials and workspace decor for work, play and everything in between.",
-  keywords: ["desk accessories", "workspace", "home office", "ergonomic", "DESKOOM"],
+  title: "DESKOOM — Alanını Kendine Göre Tasarla.",
+  description: "Çalıştığınız, yaşadığınız ve büyüdüğünüz alanlar için işlevsel ürünler, aydınlatma ve aksesuarlar.",
+  keywords: ["masa aksesuarları", "çalışma alanı", "ev ofis", "aydınlatma", "çocuk odası", "DESKOOM"],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="tr"
       className={`${geistSans.variable} ${editorial.variable}`}
     >
       <body>{children}</body>

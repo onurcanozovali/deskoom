@@ -3,7 +3,14 @@
 import { useEffect, useState } from "react";
 import { BagIcon, CloseIcon, HeartIcon, MenuIcon, SearchIcon, UserIcon } from "./Icons";
 
-const links = ["Work", "Kids", "Lighting", "Organization", "Accessories", "New Arrivals"];
+const links = [
+  { label: "Çalışma", href: "#work" },
+  { label: "Çocuk", href: "#kids" },
+  { label: "Aydınlatma", href: "#lighting" },
+  { label: "Düzenleme", href: "#organization" },
+  { label: "Aksesuarlar", href: "#accessories" },
+  { label: "Yeni Gelenler", href: "#new-arrivals" },
+];
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -11,17 +18,17 @@ export function Header() {
 
   return <>
     <header className="site-header"><div className="header-inner container">
-      <a className="wordmark" href="#top" aria-label="Deskoom home">DESKOOM<span>.</span></a>
-      <nav className="desktop-nav" aria-label="Main navigation">{links.map((link) => <a key={link} href={`#${link.toLowerCase().replaceAll(" ", "-")}`}>{link}</a>)}</nav>
+      <a className="wordmark" href="#top" aria-label="Deskoom ana sayfa">DESKOOM<span>.</span></a>
+      <nav className="desktop-nav" aria-label="Ana menü">{links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}</nav>
       <div className="header-actions">
-        <button className="header-action" aria-label="Search"><SearchIcon /><span>Search</span></button>
-        <button className="header-action desktop-action" aria-label="Account"><UserIcon /><span>Account</span></button>
-        <button className="header-action desktop-action" aria-label="Wishlist"><HeartIcon /><em>0</em></button>
-        <button className="header-action" aria-label="Cart, 0 items"><BagIcon /><em>0</em></button>
-        <button className="menu-button" aria-label="Open menu" onClick={() => setOpen(true)}><MenuIcon /></button>
+        <button className="header-action" aria-label="Ara"><SearchIcon /><span>Ara</span></button>
+        <button className="header-action desktop-action" aria-label="Hesabım"><UserIcon /><span>Hesabım</span></button>
+        <button className="header-action desktop-action" aria-label="İstek listesi"><HeartIcon /><em>0</em></button>
+        <button className="header-action" aria-label="Sepet, 0 ürün"><BagIcon /><em>0</em></button>
+        <button className="menu-button" aria-label="Menüyü aç" onClick={() => setOpen(true)}><MenuIcon /></button>
       </div>
     </div></header>
-    <aside className={`mobile-drawer ${open ? "is-open" : ""}`} aria-hidden={!open}><div className="drawer-top"><span className="wordmark">DESKOOM<span>.</span></span><button className="icon-button" aria-label="Close menu" onClick={() => setOpen(false)}><CloseIcon /></button></div><nav aria-label="Mobile navigation">{links.map((link) => <a onClick={() => setOpen(false)} key={link} href={`#${link.toLowerCase().replaceAll(" ", "-")}`}>{link}<span>→</span></a>)}</nav><div className="drawer-tools"><a href="#account"><UserIcon />Account</a><a href="#wishlist"><HeartIcon />Wishlist</a></div></aside>
-    {open && <button className="drawer-backdrop" aria-label="Close menu" onClick={() => setOpen(false)} />}
+    <aside className={`mobile-drawer ${open ? "is-open" : ""}`} aria-hidden={!open}><div className="drawer-top"><span className="wordmark">DESKOOM<span>.</span></span><button className="icon-button" aria-label="Menüyü kapat" onClick={() => setOpen(false)}><CloseIcon /></button></div><nav aria-label="Mobil menü">{links.map((link) => <a onClick={() => setOpen(false)} key={link.href} href={link.href}>{link.label}<span>→</span></a>)}</nav><div className="drawer-tools"><a href="#account"><UserIcon />Hesabım</a><a href="#wishlist"><HeartIcon />İstek Listesi</a></div></aside>
+    {open && <button className="drawer-backdrop" aria-label="Menüyü kapat" onClick={() => setOpen(false)} />}
   </>;
 }
