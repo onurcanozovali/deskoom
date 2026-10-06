@@ -1,14 +1,8 @@
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductRail } from "@/components/ProductRail";
 import { bestSellers, kidsProducts, newArrivals, workProducts } from "@/data/products";
-
-const footerGroups = [
-  { title: "Mağaza", links: ["Çalışma", "Çocuk", "Aydınlatma", "Düzenleme", "Aksesuarlar", "Yeni Gelenler"] },
-  { title: "Yardım", links: ["Kargo", "İade", "Sıkça Sorulanlar", "İletişim"] },
-  { title: "Hakkımızda", links: ["Hikâyemiz", "Malzemeler", "Günlük"] },
-  { title: "Yasal", links: ["Gizlilik", "Koşullar", "Mesafeli Satış Sözleşmesi"] },
-];
 
 const values = [
   ["İşlevsel", "Önce fayda."],
@@ -53,6 +47,6 @@ export default function Home() {
 
     <section className="newsletter"><span className="newsletter-ghost">Bülten</span><div className="newsletter-inner"><h2>Yeniliklere yer açın.</h2><p>Yeni ürünler, oda fikirleri ve ara sıra özel teklifler.</p><form><label className="sr-only" htmlFor="email">E-posta adresi</label><input id="email" type="email" placeholder="E-posta adresinizi girin" required/><button type="submit" aria-label="Abone ol">→</button></form></div></section>
 
-    <footer><div className="footer-inner container"><div className="footer-links">{footerGroups.map((group) => <div key={group.title}><h3>{group.title}</h3>{group.links.map((link) => <a href={`#${link.toLocaleLowerCase("tr-TR").replaceAll(" ", "-")}`} key={link}>{link}</a>)}</div>)}</div><div className="footer-brand"><a className="wordmark" href="#top">DESKOOM<span>.</span></a><p>Alanını kendine göre tasarla.</p><div><a href="#instagram">Instagram</a><a href="#pinterest">Pinterest</a><a href="#tiktok">TikTok</a></div></div><div className="footer-bottom"><span>© 2026 DESKOOM</span><span>Çalışma, oyun ve hayatın geri kalanı.</span></div></div></footer>
+    <Footer />
   </main>;
 }
