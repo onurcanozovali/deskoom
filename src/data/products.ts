@@ -17,6 +17,8 @@ export const newArrivals: Product[] = [
   { id: "cable-kit", name: "Cable Kit", variant: "Black", price: "₺249", image: "/images/new-arrivals.png", crop: "crop-br" },
 ];
 
+export const allProducts: Product[] = [...bestSellers, ...newArrivals];
+
 export const categories = [
   { name: "Desk", copy: "Everything your workspace starts with.", crop: "crop-tl" },
   { name: "Organization", copy: "Less clutter. More focus.", crop: "crop-tr" },
