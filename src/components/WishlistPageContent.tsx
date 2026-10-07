@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { allProducts } from "@/data/products";
+import { collectionLabels } from "@/lib/catalog";
 import { useCart } from "./CartProvider";
 import { HeartIcon } from "./Icons";
 import { useWishlist } from "./WishlistProvider";
@@ -27,7 +28,7 @@ export function WishlistPageContent() {
   if (products.length === 0) {
     return <section className="wishlist-empty container">
       <div className="wishlist-empty-art"><HeartIcon size={42}/></div>
-      <div><p>İstek listeniz</p><h2>Sevdiklerinizi burada biriktirin.</h2><span>Ürünlerdeki kalp simgesine dokunun; ilham veren parçalar sizi burada beklesin.</span><Link className="corner-button" href="/#shop">Ürünleri keşfet <b>→</b></Link></div>
+      <div><p>İstek listeniz</p><h2>Sevdiklerinizi burada biriktirin.</h2><span>Ürünlerdeki kalp simgesine dokunun; ilham veren parçalar sizi burada beklesin.</span><Link className="corner-button" href="/urunler">Ürünleri keşfet <b>→</b></Link></div>
     </section>;
   }
 
@@ -35,7 +36,7 @@ export function WishlistPageContent() {
     <div className="wishlist-toolbar"><p>{products.length} kayıtlı ürün</p><span>İstek listeniz bu tarayıcıda otomatik olarak saklanır.</span></div>
     <div className="wishlist-grid">{products.map((product) => <article className="wishlist-card" key={product.id}>
       <div className="wishlist-card-media"><Link href={`/urun/${product.id}`} aria-label={`${product.name} ürününü incele`}><div className={`sheet-image ${product.crop}`} style={{ backgroundImage: `url(${product.image})` }}/></Link><button type="button" onClick={() => removeProduct(product.id)} aria-label={`${product.name} ürününü istek listesinden çıkar`}><HeartIcon/></button></div>
-      <div className="wishlist-card-info"><div><p>{product.collection === "work" ? "DESKOOM Çalışma" : "DESKOOM Çocuk"}</p><h2><Link href={`/urun/${product.id}`}>{product.name}</Link></h2><span>{product.variant}</span></div><strong>{product.price}</strong></div>
+      <div className="wishlist-card-info"><div><p>DESKOOM {collectionLabels[product.collection]}</p><h2><Link href={`/urun/${product.id}`}>{product.name}</Link></h2><span>{product.variant}</span></div><strong>{product.price}</strong></div>
       <button className="wishlist-add" type="button" onClick={() => addToCart(product.id)}>{addedId === product.id ? "Sepete eklendi" : "Sepete ekle"}<span>→</span></button>
     </article>)}</div>
   </section>;

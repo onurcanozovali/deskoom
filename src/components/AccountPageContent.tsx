@@ -40,7 +40,7 @@ export function AccountPageContent() {
 
       <div className="account-stats" aria-label="Hesap özeti"><div><span>01</span><strong>0</strong><p>Aktif sipariş</p></div><div><span>02</span><strong>{wishlistCount}</strong><p>İstek listesinde</p></div><div><span>03</span><strong>₺0</strong><p>Toplam alışveriş</p></div></div>
 
-      <section className="account-section" id="orders"><div className="account-section-heading"><div><p>Siparişler</p><h2>Son siparişler</h2></div><span>Henüz sipariş yok</span></div><div className="account-empty-order"><div aria-hidden="true">↗</div><div><h3>İlk alanınızı oluşturmaya başlayın.</h3><p>Sipariş verdiğinizde teslimat durumunu ve geçmişinizi burada görebileceksiniz.</p></div><Link href="/#shop">Ürünleri keşfet →</Link></div></section>
+      <section className="account-section" id="orders"><div className="account-section-heading"><div><p>Siparişler</p><h2>Son siparişler</h2></div><span>Henüz sipariş yok</span></div><div className="account-empty-order"><div aria-hidden="true">↗</div><div><h3>İlk alanınızı oluşturmaya başlayın.</h3><p>Sipariş verdiğinizde teslimat durumunu ve geçmişinizi burada görebileceksiniz.</p></div><Link href="/urunler">Ürünleri keşfet →</Link></div></section>
 
       <div className="account-grid">
         <section className="account-tile" id="profile"><span>Profil</span><h2>Hesap bilgileri</h2><dl><div><dt>Ad</dt><dd>{user.name}</dd></div><div><dt>E-posta</dt><dd>{user.email}</dd></div><div><dt>Giriş yöntemi</dt><dd>{providerLabels[user.provider]}</dd></div></dl><button type="button">Bilgileri düzenle →</button></section>

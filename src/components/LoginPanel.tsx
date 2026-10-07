@@ -61,6 +61,6 @@ export function LoginPanel({ nextPath }: { nextPath: string }) {
     </form>
 
     <p className="auth-legal">Bu bir demo oturumudur. Gerçek Google ve Facebook kimlik doğrulaması henüz bağlı değildir.</p>
-    <Link className="guest-shopping" href="/#shop">Üye olmadan alışverişe devam et →</Link>
+    <Link className="guest-shopping" href="/urunler">Üye olmadan alışverişe devam et →</Link>
   </div>;
 }

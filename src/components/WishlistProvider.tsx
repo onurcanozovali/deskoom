@@ -83,7 +83,7 @@ function getServerHydratedSnapshot() {
 export function WishlistProvider({ children }: { children: React.ReactNode }) {
   const productIds = useSyncExternalStore(subscribeToWishlist, getWishlistSnapshot, getServerWishlistSnapshot);
   const ready = useSyncExternalStore(subscribeToHydration, getHydratedSnapshot, getServerHydratedSnapshot);
-  const hasProduct = useCallback((productId: string) => getWishlistSnapshot().includes(productId), []);
+  const hasProduct = useCallback((productId: string) => productIds.includes(productId), [productIds]);
   const toggleProduct = useCallback((productId: string) => {
     const current = getWishlistSnapshot();
     setWishlistSnapshot(current.includes(productId) ? current.filter((id) => id !== productId) : [...current, productId]);

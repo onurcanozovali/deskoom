@@ -67,7 +67,7 @@ export function CheckoutPageContent({ paytrConfigured }: { paytrConfigured: bool
   const defaultLastName = nameParts.slice(1).join(" ") || "Demo";
 
   if (!cartReady || !authReady) return <section className="checkout-layout container" aria-busy="true"><div className="checkout-loading"/><div className="checkout-loading summary"/></section>;
-  if (products.length === 0) return <section className="checkout-empty container"><p>Ödeme</p><h1>Sepetiniz boş.</h1><span>Ödeme adımına geçmek için önce alanınıza uygun parçaları seçin.</span><Link className="corner-button" href="/#shop">Alışverişe devam et <b>→</b></Link></section>;
+  if (products.length === 0) return <section className="checkout-empty container"><p>Ödeme</p><h1>Sepetiniz boş.</h1><span>Ödeme adımına geçmek için önce alanınıza uygun parçaları seçin.</span><Link className="corner-button" href="/urunler">Alışverişe devam et <b>→</b></Link></section>;
   if (!isAuthenticated) return <section className="checkout-empty container"><p>Güvenli ödeme</p><h1>Ödeme için giriş yapın.</h1><span>Sepetiniz korunur; girişten sonra ödeme bilgilerinize kaldığınız yerden devam edersiniz.</span><Link className="corner-button" href="/giris?yonlendir=%2Fodeme">Giriş yap <b>→</b></Link></section>;
 
   const focusFlow = () => requestAnimationFrame(() => document.getElementById("checkout-flow")?.scrollIntoView({ behavior: "smooth", block: "start" }));

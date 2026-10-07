@@ -4,11 +4,11 @@ const footerGroups = [
   {
     title: "Mağaza",
     links: [
-      ["Çalışma", "/#work"],
-      ["Çocuk", "/#kids"],
-      ["Aydınlatma", "/#lighting"],
-      ["Düzenleme", "/#organization"],
-      ["Aksesuarlar", "/#accessories"],
+      ["Work", "/work"],
+      ["Kids", "/kids"],
+      ["Aydınlatma", "/urunler?kategori=lighting"],
+      ["Düzenleme", "/urunler?kategori=organization"],
+      ["Aksesuarlar", "/urunler?kategori=accessories"],
       ["Yeni Gelenler", "/#new-arrivals"],
     ],
   },

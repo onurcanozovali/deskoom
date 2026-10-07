@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductRail } from "@/components/ProductRail";
 import { bestSellers, kidsProducts, newArrivals, workProducts } from "@/data/products";
+import Link from "next/link";
 
 const values = [
   ["İşlevsel", "Önce fayda."],
@@ -16,7 +17,7 @@ function CollectionFeature({ world }: { world: "work" | "kids" }) {
   const products = isWork ? workProducts.slice(0, 2) : kidsProducts.slice(0, 2);
   return <section className={`collection-feature container ${world}`} id={world}>
     <div className="collection-lifestyle" />
-    <div className="collection-merch"><div className="collection-copy"><p>Deskoom {isWork ? "Çalışma" : "Çocuk"}</p><h2>DESKOOM {isWork ? "ÇALIŞMA" : "ÇOCUK"}</h2><span>{isWork ? "Daha iyi çalışan bir çalışma alanı için araçlar." : "Biraz daha fazla renk. Çok daha fazla karakter."}</span><a className="text-action" href="#shop">{isWork ? "Çalışma koleksiyonunu" : "Çocuk koleksiyonunu"} keşfet →</a></div><div className="feature-products">{products.map((product) => <ProductCard product={product} key={product.id}/>)}</div></div>
+    <div className="collection-merch"><div className="collection-copy"><p>Deskoom {isWork ? "Work" : "Kids"}</p><h2>DESKOOM {isWork ? "WORK" : "KIDS"}</h2><span>{isWork ? "Daha iyi çalışan bir çalışma alanı için araçlar." : "Biraz daha fazla renk. Çok daha fazla karakter."}</span><Link className="text-action" href={isWork ? "/work" : "/kids"}>{isWork ? "Work koleksiyonunu" : "Kids koleksiyonunu"} keşfet →</Link></div><div className="feature-products">{products.map((product) => <ProductCard product={product} key={product.id}/>)}</div></div>
   </section>;
 }
 
@@ -24,11 +25,11 @@ export default function Home() {
   return <main id="top">
     <Header />
 
-    <section className="retail-hero brand-hero" aria-labelledby="hero-title"><div className="hero-copy"><p>Deskoom</p><h1 id="hero-title">Alanını kendine göre tasarla.</h1><span>Yaşadığınız, çalıştığınız ve büyüdüğünüz alanlar için tasarlanmış işlevsel ürünler, aydınlatma ve aksesuarlar.</span><div className="hero-actions"><a className="corner-button" href="#work">Çalışma ürünleri <b>→</b></a><a className="corner-button light" href="#kids">Çocuk ürünleri <b>→</b></a></div></div></section>
+    <section className="retail-hero brand-hero" aria-labelledby="hero-title"><div className="hero-copy"><p>Deskoom</p><h1 id="hero-title">Alanını kendine göre tasarla.</h1><span>Yaşadığınız, çalıştığınız ve büyüdüğünüz alanlar için tasarlanmış işlevsel ürünler, aydınlatma ve aksesuarlar.</span><div className="hero-actions"><Link className="corner-button" href="/work">Work ürünleri <b>→</b></Link><Link className="corner-button light" href="/kids">Kids ürünleri <b>→</b></Link></div></div></section>
 
     <section className="benefits container" aria-label="Alışveriş avantajları"><div><strong>01</strong><span><b>Ücretsiz kargo</b>₺1.500 üzeri</span></div><div><strong>02</strong><span><b>Kolay iade</b>Basit ve zahmetsiz iade</span></div><div><strong>03</strong><span><b>Güvenli ödeme</b>Korumalı ödeme</span></div></section>
 
-    <section className="world-entry container" aria-label="Deskoom koleksiyonları"><a href="#work" className="world-card work"><div><p>Deskoom Çalışma</p><h2>Çalışma alanını kur.</h2><span>Daha iyi görünen, daha iyi çalışan alanlar için ürünler.</span><b>Çalışma ürünleri →</b></div></a><a href="#kids" className="world-card kids"><div><p>Deskoom Çocuk</p><h2>Odası ona özel olsun.</h2><span>Genç alanlar için eğlenceli, işlevsel ve kişisel parçalar.</span><b>Çocuk ürünleri →</b></div></a></section>
+    <section className="world-entry container" aria-label="Deskoom koleksiyonları"><Link href="/work" className="world-card work"><div><p>Deskoom Work</p><h2>Çalışma alanını kur.</h2><span>Daha iyi görünen, daha iyi çalışan alanlar için ürünler.</span><b>Work ürünleri →</b></div></Link><Link href="/kids" className="world-card kids"><div><p>Deskoom Kids</p><h2>Odası ona özel olsun.</h2><span>Genç alanlar için eğlenceli, işlevsel ve kişisel parçalar.</span><b>Kids ürünleri →</b></div></Link></section>
 
     <ProductRail title="Çok Satanlar" products={bestSellers} id="shop" tabs={["all", "work", "kids"]} />
 
@@ -37,7 +38,7 @@ export default function Home() {
 
     <section className="personalized container" id="personalized"><div className="personalized-products"/><div className="personalized-copy"><p>Alanınıza özel</p><h2>Senin adın.<br/>Senin rengin.<br/>Senin alanın.</h2><span>Bazı alanlar gerçekten size ait bir şeyi hak eder.</span><a className="corner-button" href="#personalized">Kişiselleştirmeyi keşfet <b>→</b></a></div></section>
 
-    <section className="lighting-section" id="lighting"><div className="lighting-work"/><div className="lighting-copy"><p>Çalışma + Çocuk</p><h2>Aydınlatma</h2><span>Odaklı çalışmalardan huzurlu gecelere.</span><a className="corner-button" href="#lighting">Aydınlatmayı keşfet <b>→</b></a></div><div className="lighting-kids"/></section>
+    <section className="lighting-section" id="lighting"><div className="lighting-work"/><div className="lighting-copy"><p>Work + Kids</p><h2>Aydınlatma</h2><span>Odaklı çalışmalardan huzurlu gecelere.</span><Link className="corner-button" href="/urunler?kategori=lighting">Aydınlatmayı keşfet <b>→</b></Link></div><div className="lighting-kids"/></section>
 
     <ProductRail title="Yeni Gelenler" products={newArrivals} id="new-arrivals" />
 

@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import type { Product } from "@/data/products";
+import { collectionLabels } from "@/lib/catalog";
 import { HeartIcon } from "./Icons";
 import { useWishlist } from "./WishlistProvider";
 
 export function ProductCard({ product }: { product: Product }) {
   const { hasProduct, toggleProduct } = useWishlist();
   const saved = hasProduct(product.id);
-  const collectionLabel = product.collection === "work" ? "Çalışma" : "Çocuk";
+  const collectionLabel = collectionLabels[product.collection];
 
   return <article className="product-card">
     <div className="product-media">

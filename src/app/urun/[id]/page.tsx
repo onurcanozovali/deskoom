@@ -6,12 +6,7 @@ import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductPurchase } from "@/components/ProductPurchase";
 import { allProducts, type Product } from "@/data/products";
-
-const categoryLabels = {
-  lighting: "Aydınlatma",
-  organization: "Düzenleme",
-  accessories: "Aksesuar",
-} as const;
+import { categoryLabels, collectionLabels } from "@/lib/catalog";
 
 const categoryHighlights = {
   lighting: ["Dengeli ve sıcak ışık", "Kompakt yerleşim", "Odayla uyumlu yalın form"],
@@ -43,7 +38,7 @@ function ProductFacts({ product }: { product: Product }) {
   const facts = [
     ["Malzeme", product.material],
     ["Ölçüler", product.dimensions],
-    ["Koleksiyon", product.collection === "work" ? "DESKOOM Çalışma" : "DESKOOM Çocuk"],
+    ["Koleksiyon", `DESKOOM ${collectionLabels[product.collection]}`],
   ];
 
   return <section className="product-facts container" aria-labelledby="product-details-title">
@@ -57,8 +52,8 @@ export default async function ProductDetailPage({ params }: PageProps<"/urun/[id
   const product = getProduct(id);
   if (!product) notFound();
 
-  const collectionLabel = product.collection === "work" ? "Çalışma" : "Çocuk";
-  const relatedProducts = allProducts.filter((item) => item.id !== product.id && item.collection === product.collection).slice(0, 3);
+  const collectionLabel = collectionLabels[product.collection];
+  const relatedProducts = allProducts.filter((item) => item.id !== product.id && item.category === product.category);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -79,13 +74,13 @@ export default async function ProductDetailPage({ params }: PageProps<"/urun/[id
     <Header />
 
     <nav className="product-breadcrumb container" aria-label="Sayfa yolu">
-      <Link href="/">Ana sayfa</Link><span>·</span><Link href={`/#${product.collection}`}>{collectionLabel}</Link><span>·</span><span aria-current="page">{product.name}</span>
+      <Link href="/">Ana sayfa</Link><span>·</span><Link href={`/${product.collection}`}>{collectionLabel}</Link><span>·</span><Link href={`/urunler?kategori=${product.category}`}>{categoryLabels[product.category]}</Link><span>·</span><span aria-current="page">{product.name}</span>
     </nav>
 
     <section className={`product-detail container ${product.collection}`}>
       <div className="product-gallery">
         <div className="detail-primary"><div className={`sheet-image ${product.crop}`} style={{ backgroundImage: `url(${product.image})` }} role="img" aria-label={product.name}/><span>01</span></div>
-        <div className={`detail-lifestyle ${product.collection}`} role="img" aria-label={`${collectionLabel} koleksiyonu yaşam alanı`}><span>DESKOOM {collectionLabel.toLocaleUpperCase("tr-TR")}</span></div>
+        <div className={`detail-lifestyle ${product.collection}`} role="img" aria-label={`${collectionLabel} koleksiyonu yaşam alanı`}><span>DESKOOM {collectionLabel.toUpperCase()}</span></div>
       </div>
 
       <div className="detail-info">
@@ -110,7 +105,7 @@ export default async function ProductDetailPage({ params }: PageProps<"/urun/[id
     <ProductFacts product={product} />
 
     <section className="related-products container" aria-labelledby="related-title">
-      <div className="commerce-heading"><h2 id="related-title">Bunları da sevebilirsiniz</h2><Link className="outline-link" href={`/#${product.collection}`}>Koleksiyonu keşfet <span>→</span></Link></div>
+      <div className="commerce-heading"><h2 id="related-title">Aynı kategorideki ürünler</h2><Link className="outline-link" href={`/urunler?kategori=${product.category}`}>{categoryLabels[product.category]} ürünleri <span>→</span></Link></div>
       <div className="related-grid">{relatedProducts.map((item) => <ProductCard key={item.id} product={item}/>)}</div>
     </section>
 
