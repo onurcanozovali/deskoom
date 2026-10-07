@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Instrument_Serif } from "next/font/google";
+import { AuthProvider } from "@/components/AuthProvider";
 import { CartProvider } from "@/components/CartProvider";
+import { WishlistProvider } from "@/components/WishlistProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${editorial.variable}`}
     >
-      <body><CartProvider>{children}</CartProvider></body>
+      <body><AuthProvider><WishlistProvider><CartProvider>{children}</CartProvider></WishlistProvider></AuthProvider></body>
     </html>
   );
 }

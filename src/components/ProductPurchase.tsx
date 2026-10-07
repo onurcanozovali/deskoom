@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { useCart } from "./CartProvider";
 import { HeartIcon } from "./Icons";
+import { useWishlist } from "./WishlistProvider";
 
 export function ProductPurchase({ productId, productName }: { productId: string; productName: string }) {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
-  const [saved, setSaved] = useState(false);
   const { addItem } = useCart();
+  const { hasProduct, toggleProduct } = useWishlist();
+  const saved = hasProduct(productId);
 
   const handleAdd = () => {
     addItem(productId, quantity);
@@ -24,7 +26,7 @@ export function ProductPurchase({ productId, productName }: { productId: string;
         <button type="button" onClick={() => setQuantity((current) => current + 1)} aria-label="Adedi artır">+</button>
       </div>
       <button className="detail-add-button" type="button" onClick={handleAdd}>{added ? "Sepete eklendi" : "Sepete ekle"}<span>→</span></button>
-      <button className={`detail-wishlist ${saved ? "is-saved" : ""}`} type="button" onClick={() => setSaved(!saved)} aria-label={`${productName} ürününü istek ${saved ? "listesinden çıkar" : "listesine ekle"}`}><HeartIcon /></button>
+      <button className={`detail-wishlist ${saved ? "is-saved" : ""}`} type="button" onClick={() => toggleProduct(productId)} aria-pressed={saved} aria-label={`${productName} ürününü istek ${saved ? "listesinden çıkar" : "listesine ekle"}`}><HeartIcon /></button>
     </div>
     <p className="purchase-note" aria-live="polite">{added ? `${quantity} adet ${productName} sepetinize eklendi.` : "Güvenli ödeme · Kolay iade · ₺1.500 üzeri ücretsiz kargo"}</p>
   </div>;

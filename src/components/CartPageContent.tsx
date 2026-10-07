@@ -1,14 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { allProducts, formatPrice, priceToNumber } from "@/data/products";
+import { useAuth } from "./AuthProvider";
 import { useCart } from "./CartProvider";
 
 const FREE_SHIPPING_LIMIT = 1500;
 
 export function CartPageContent() {
   const { items, ready, itemCount, updateQuantity, removeItem, clearCart } = useCart();
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
   const [checkoutMessage, setCheckoutMessage] = useState("");
   const cartProducts = useMemo(() => items.flatMap((item) => {
     const product = allProducts.find((candidate) => candidate.id === item.productId);
@@ -17,6 +21,13 @@ export function CartPageContent() {
   const subtotal = cartProducts.reduce((total, item) => total + priceToNumber(item.product.price) * item.quantity, 0);
   const remainingForShipping = Math.max(0, FREE_SHIPPING_LIMIT - subtotal);
   const shippingProgress = Math.min(100, (subtotal / FREE_SHIPPING_LIMIT) * 100);
+  const handleCheckout = () => {
+    if (!isAuthenticated) {
+      router.push("/giris?yonlendir=%2Fsepet");
+      return;
+    }
+    setCheckoutMessage("Oturumunuz doğrulandı. Güvenli ödeme entegrasyonu için hazırsınız.");
+  };
 
   if (!ready) {
     return <section className="cart-shell container" aria-busy="true" aria-label="Sepet yükleniyor"><div className="cart-loading"/><div className="cart-loading summary"/></section>;
@@ -57,8 +68,8 @@ export function CartPageContent() {
       <div className="shipping-progress"><span style={{ width: `${shippingProgress}%` }}/></div>
       <p className="shipping-message">{remainingForShipping > 0 ? `Ücretsiz kargo için ${formatPrice(remainingForShipping)} daha ekleyin.` : "Ücretsiz kargo kazandınız."}</p>
       <dl><div><dt>Ara toplam</dt><dd>{formatPrice(subtotal)}</dd></div><div><dt>Kargo</dt><dd>{remainingForShipping === 0 ? "Ücretsiz" : "Ödeme adımında"}</dd></div><div className="summary-total"><dt>Tahmini toplam</dt><dd>{formatPrice(subtotal)}</dd></div></dl>
-      <button className="checkout-button" type="button" onClick={() => setCheckoutMessage("Sepetiniz hazır. Güvenli ödeme adımı bir sonraki aşamada bağlanacak.")}>Güvenli ödemeye geç <span>→</span></button>
-      <p className="checkout-message" aria-live="polite">{checkoutMessage || "Vergiler ve varsa teslimat ücreti ödeme adımında hesaplanır."}</p>
+      <button className="checkout-button" type="button" onClick={handleCheckout}>Güvenli ödemeye geç <span>→</span></button>
+      <p className="checkout-message" aria-live="polite">{checkoutMessage || (isAuthenticated ? "Oturumunuz açık. Ödeme adımına güvenle devam edebilirsiniz." : "Ödeme adımında giriş yapmanız istenir; sepetiniz kaybolmaz.")}</p>
       <div className="accepted-payments" aria-label="Ödeme avantajları"><span>Güvenli ödeme</span><span>Kolay iade</span></div>
     </aside>
   </section>;
