@@ -22,10 +22,10 @@ export function CartPageContent() {
   const shippingProgress = Math.min(100, (subtotal / FREE_SHIPPING_THRESHOLD) * 100);
   const handleCheckout = () => {
     if (!isAuthenticated) {
-      router.push("/giris?yonlendir=%2Fcheckout");
+      router.push("/giris?yonlendir=%2Fodeme");
       return;
     }
-    router.push("/checkout");
+    router.push("/odeme");
   };
 
   if (!ready) {

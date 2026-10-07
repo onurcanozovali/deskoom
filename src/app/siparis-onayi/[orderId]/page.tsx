@@ -26,7 +26,7 @@ function addressText(order: Order) {
   return `${address.address}${address.apartment ? `, ${address.apartment}` : ""}, ${address.district}/${address.city}, ${address.country}`;
 }
 
-export default async function OrderConfirmationPage({ params }: PageProps<"/order-confirmation/[orderId]">) {
+export default async function OrderConfirmationPage({ params }: PageProps<"/siparis-onayi/[orderId]">) {
   const { orderId } = await params;
   let order: Order | null = null;
   try { order = await findOrderById(orderId); } catch { order = null; }

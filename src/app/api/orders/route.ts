@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
       httpOnly: true,
       sameSite: "lax",
       secure: process.env.NODE_ENV === "production",
-      path: `/order-confirmation/${order.id}`,
+      path: `/siparis-onayi/${order.id}`,
       maxAge: 60 * 60 * 24 * 30,
     });
     return response;
