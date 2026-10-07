@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Instrument_Serif } from "next/font/google";
+import { CartProvider } from "@/components/CartProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${editorial.variable}`}
     >
-      <body>{children}</body>
+      <body><CartProvider>{children}</CartProvider></body>
     </html>
   );
 }

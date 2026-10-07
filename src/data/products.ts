@@ -38,3 +38,11 @@ export const newArrivals: Product[] = [
 export const allProducts: Product[] = [...bestSellers, ...newArrivals];
 export const workProducts = allProducts.filter((product) => product.collection === "work");
 export const kidsProducts = allProducts.filter((product) => product.collection === "kids");
+
+export function priceToNumber(price: string) {
+  return Number(price.replace(/\D/g, ""));
+}
+
+export function formatPrice(value: number) {
+  return `₺${Math.max(0, value).toLocaleString("tr-TR")}`;
+}

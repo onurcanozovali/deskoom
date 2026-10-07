@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useCart } from "./CartProvider";
 import { BagIcon, CloseIcon, HeartIcon, MenuIcon, SearchIcon, UserIcon } from "./Icons";
 
 const links = [
@@ -15,6 +16,7 @@ const links = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { itemCount } = useCart();
   useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [open]);
 
   return <>
@@ -25,7 +27,7 @@ export function Header() {
         <button className="header-action" aria-label="Ara"><SearchIcon /><span>Ara</span></button>
         <button className="header-action desktop-action" aria-label="Hesabım"><UserIcon /><span>Hesabım</span></button>
         <button className="header-action desktop-action" aria-label="İstek listesi"><HeartIcon /><em>0</em></button>
-        <button className="header-action" aria-label="Sepet, 0 ürün"><BagIcon /><em>0</em></button>
+        <Link className="header-action" href="/sepet" aria-label={`Sepet, ${itemCount} ürün`}><BagIcon /><em>{itemCount > 99 ? "99+" : itemCount}</em></Link>
         <button className="menu-button" aria-label="Menüyü aç" onClick={() => setOpen(true)}><MenuIcon /></button>
       </div>
     </div></header>

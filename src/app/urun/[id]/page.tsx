@@ -96,7 +96,7 @@ export default async function ProductDetailPage({ params }: PageProps<"/urun/[id
         <p className="detail-summary">{product.summary}</p>
 
         <div className="variant-choice"><span>Seçenek</span><button type="button" aria-pressed="true"><i aria-hidden="true"/>{product.variant}</button></div>
-        <ProductPurchase productName={product.name} />
+        <ProductPurchase productId={product.id} productName={product.name} />
 
         <ul className="detail-highlights" aria-label="Ürün özellikleri">{categoryHighlights[product.category].map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>
 
